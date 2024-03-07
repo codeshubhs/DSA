@@ -11,7 +11,7 @@
  */
 class Solution {
 public:
-    void solve (TreeNode*root, vector<int>&v){
+    /*void solve (TreeNode*root, vector<int>&v){
         
         if(root==NULL){
             return ;
@@ -19,11 +19,32 @@ public:
         solve(root->left,v);
         v.push_back(root->val);
         solve(root->right,v);
-    }
+    }*/
     vector<int> inorderTraversal(TreeNode* root) {
-        vector<int>v;
+       /* vector<int>v;
         
         solve(root,v);
-        return v;
+        return v;*/
+        
+        // iterative method : we can use stack 
+        vector<int>ans;
+        stack<TreeNode*>st;
+        TreeNode* node=root;
+        
+        while(true){
+            if(node!=NULL){
+                st.push(node);
+                node=node->left;
+            }
+            else{
+                
+                if(st.empty())break;
+                node=st.top();
+                st.pop();
+                ans.push_back(node->val);
+                node=node->right;
+            }
+        }
+        return ans;
     }
 };
