@@ -11,7 +11,9 @@
  */
 class Solution {
 public:
-   void solve(TreeNode*root, vector<int>&v){
+  /* 
+  Method-1: Recursion 
+  void solve(TreeNode*root, vector<int>&v){
         
         if(root==NULL){
             return ;
@@ -19,11 +21,33 @@ public:
        v.push_back(root->val);
        solve(root->left,v);
        solve(root->right,v);
-    }
+    }*/
     vector<int> preorderTraversal(TreeNode* root) {
-        vector<int>v;
+        /*vector<int>v;
         
         solve(root,v);
-        return v;
+        return v;*/
+        
+        // Method-2 : Iterative method 
+        vector<int>ans;
+        if(root==NULL){
+            return ans;
+        }
+        stack<TreeNode*>s;
+        
+        s.push(root);
+        while(!s.empty()){
+            root=s.top();
+            s.pop();
+            ans.push_back(root->val);
+            
+            if(root->right){
+                s.push(root->right);
+            }
+            if(root->left){
+                s.push(root->left);
+            }
+        }
+        return ans;
     }
 };
